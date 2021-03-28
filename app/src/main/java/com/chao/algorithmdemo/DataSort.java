@@ -13,7 +13,7 @@ import java.util.List;
 public class DataSort {
 
     final String TAG = "DataSort";
-    Integer[] data = {8, 47 , 58 ,5 ,6 ,9 ,25 ,14 ,35 ,25, 32 ,7 ,47 ,9 ,58 ,56 ,42 ,4, 58 , 98, 100};
+    Integer[] mData = {8, 47 , 58 ,5 ,6 ,9 ,25 ,14 ,35 ,25, 32 ,7 ,47 ,9 ,58 ,56 ,42 ,4, 58 , 98, 100};
 
     /**
     快速排序
@@ -26,12 +26,16 @@ public class DataSort {
     算法简单描述：选择数组第一位元素位基准值，创建两个新数组，分别存放小于基准值和大于基准值的元素。然后这两个新数组递归进行上述操作，直到数组为空。然后将左右数组和基准值进行拼接
     */
     public void quickSort(){
-        Integer[] sort = _quickSort(data);
+        Integer[] sort = _quickSort(mData);
+        result(sort, "quickSort");
+    }
+
+    private void result(Integer[] sort, String msg) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < sort.length; i++) {
             builder.append(sort[i]).append(", ");
         }
-        Log.d(TAG, "quickSort: " + builder.toString());
+        Log.d(TAG, msg + " -->" + builder.toString());
     }
 
     private Integer[] _quickSort(Integer[] a){
@@ -63,6 +67,26 @@ public class DataSort {
     }
 
 
+    /**
+     * 插入排序
+     * 将数组分为前后两部分，前一部分是已排序的元素集合，后一部分是未排序的元素集合。每次选中未排序的第一个数组，插入到已排序集合中的合适的位置。
+     * 工作原理：是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，也就是进行比较，找到相应位置并插入。
+     * 插入排序在实现上，在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。和冒泡排序类似
+     */
+    public void insertSort(){
+        Integer[] arr = new Integer[mData.length];
+        System.arraycopy(mData, 0 , arr , 0, mData.length);
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i -1; j > -1; j--) {
+                if (arr[j] > arr[j + 1]){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j +1] = temp;
+                }
+            }
+        }
+        result(arr, "insertSort");
+    }
 
 
 

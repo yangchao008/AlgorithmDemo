@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 //        Algorithm2().test()
         findViewById<TextView>(R.id.tv_start).setOnClickListener {
             DataSort().quickSort()
+            DataSort().insertSort()
         }
     }
 }
