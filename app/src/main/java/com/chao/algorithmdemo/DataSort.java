@@ -34,6 +34,14 @@ public class DataSort {
     public static void quickSort(){
         Integer[] sort = _quickSort(mData);
         result(sort, "quickSort");
+
+        // 网上拷贝代码
+        int[] newArr = new int[mData.length];
+        for (int i = 0; i < newArr.length; i++) {
+            newArr[i] = mData[i];
+        }
+        new quick_sort().sort(newArr);
+        result(sort, "网上拷贝代码");
     }
 
     private static void result(Integer[] sort, String msg) {
