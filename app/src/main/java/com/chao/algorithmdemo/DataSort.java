@@ -1,7 +1,5 @@
 package com.chao.algorithmdemo;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +10,13 @@ import java.util.List;
  */
 public class DataSort {
 
-    final String TAG = "DataSort";
-    Integer[] mData = {8, 47 , 58 ,5 ,6 ,9 ,25 ,14 ,35 ,25, 32 ,7 ,47 ,9 ,58 ,56 ,42 ,4, 58 , 98, 100};
+    static final String TAG = "DataSort";
+    static Integer[] mData = {8, 47 , 58 ,5 ,6 ,9 ,25 ,14 ,35 ,25, 32 ,7 ,47 ,9 ,58 ,56 ,42 ,4, 58 , 98, 100};
 
+    public static void main(String[] args) {
+        quickSort();
+        insertSort();
+    }
     /**
     快速排序
     快速排序用一种分而治之的思想，
@@ -24,21 +26,36 @@ public class DataSort {
             (3) 对这两个子数组进行快速排序。
     快速排序的例子(采用了递归的思想)：
     算法简单描述：选择数组第一位元素位基准值，创建两个新数组，分别存放小于基准值和大于基准值的元素。然后这两个新数组递归进行上述操作，直到数组为空。然后将左右数组和基准值进行拼接
+     平均时间复杂度：O(NlogN)
+     最佳时间复杂度：O(NlogN)
+     最差时间复杂度：O(N^2)
+     空间复杂度：根据实现方式的不同而不同
     */
-    public void quickSort(){
+    public static void quickSort(){
         Integer[] sort = _quickSort(mData);
         result(sort, "quickSort");
     }
 
-    private void result(Integer[] sort, String msg) {
+    private static void result(Integer[] sort, String msg) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < sort.length; i++) {
             builder.append(sort[i]).append(", ");
         }
-        Log.d(TAG, msg + " -->" + builder.toString());
+        log( msg + " -->" + builder.toString());
     }
 
-    private Integer[] _quickSort(Integer[] a){
+    private static void log(String msg){
+        log(TAG, msg);
+    }
+
+    private static void log(String tag, String msg){
+        if (tag == null || tag.equals("")){
+            tag = TAG;
+        }
+        System.out.println(String.format("%s, %s", tag, msg));
+    }
+
+    private static Integer[] _quickSort(Integer[] a){
         if (a.length < 2){
             return a;
         }else {
@@ -72,8 +89,13 @@ public class DataSort {
      * 将数组分为前后两部分，前一部分是已排序的元素集合，后一部分是未排序的元素集合。每次选中未排序的第一个数组，插入到已排序集合中的合适的位置。
      * 工作原理：是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，也就是进行比较，找到相应位置并插入。
      * 插入排序在实现上，在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。和冒泡排序类似
+     * 平均时间复杂度：O(N^2)
+     * 最差时间复杂度：O(N^2)
+     * 空间复杂度：O(1)
+     * 排序方式：In-place
+     * 稳定性：稳定
      */
-    public void insertSort(){
+    public static void insertSort(){
         Integer[] arr = new Integer[mData.length];
         System.arraycopy(mData, 0 , arr , 0, mData.length);
         for (int i = 1; i < arr.length; i++) {
