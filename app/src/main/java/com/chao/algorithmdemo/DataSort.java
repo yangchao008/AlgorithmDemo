@@ -44,25 +44,6 @@ public class DataSort {
         result(sort, "网上拷贝代码");
     }
 
-    private static void result(Integer[] sort, String msg) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < sort.length; i++) {
-            builder.append(sort[i]).append(", ");
-        }
-        log( msg + " -->" + builder.toString());
-    }
-
-    private static void log(String msg){
-        log(TAG, msg);
-    }
-
-    private static void log(String tag, String msg){
-        if (tag == null || tag.equals("")){
-            tag = TAG;
-        }
-        System.out.println(String.format("%s, %s", tag, msg));
-    }
-
     private static Integer[] _quickSort(Integer[] a){
         if (a.length < 2){
             return a;
@@ -119,5 +100,25 @@ public class DataSort {
     }
 
 
+
+
+    private static void result(Integer[] sort, String msg) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < sort.length; i++) {
+            builder.append(sort[i]).append(", ");
+        }
+        log( msg + " -->" + builder.toString());
+    }
+
+    private static void log(String msg){
+        log(TAG, msg);
+    }
+
+    private static void log(String tag, String msg){
+        if (tag == null || tag.equals("")){
+            tag = TAG;
+        }
+        System.out.println(String.format("%s, %s", tag, msg));
+    }
 
 }
